@@ -1,4 +1,6 @@
-//bouton plus
+
+
+ //bouton plus
 let btnPlus = document.getElementsByClassName('btn btn-success')
 for (let i =0;i<btnPlus.length;i++){
     btnPlus[i].addEventListener('click',function(e){
@@ -6,7 +8,14 @@ for (let i =0;i<btnPlus.length;i++){
         qte.innerHTML = +(qte.innerHTML) +1
         const PRIX_UNITAIRE = e.target.nextElementSibling.nextElementSibling.nextElementSibling
         let prix = e.target.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
+        let pourcentage = e.target.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
+        console.log((100-Number(pourcentage.value))/100)
+       if(qte.innerHTML== 4){
+        prix.innerHTML = +(PRIX_UNITAIRE.innerHTML) * parseInt(qte.innerHTML) * ((100-Number(pourcentage.value))/100)
+       }
+       else {
         prix.innerHTML = +(PRIX_UNITAIRE.innerHTML) * parseInt(qte.innerHTML)
+       }
         UpdateTotalPrice()
     })
 }
@@ -24,10 +33,10 @@ for (let i =0;i<sustractionbtn.length;i++){
         UpdateTotalPrice()
     })
 }
-var heartBtn = document.getElementsByClassName('fas fa-heart')
+var heartBtn = document.getElementsByClassName('fa-heart')
 for (let el of heartBtn ) {
     el.addEventListener('click',function(e){
-        e.target.classList.toggle('white')
+        e.target.classList.toggle('red')
     })
 }
 
@@ -36,8 +45,7 @@ for (let heart of deleteBtn) {
     heart.addEventListener('click',function(e){
        e.target.parentElement.remove()
        UpdateTotalPrice()
-    })
-   
+    }) 
 }
 
 function UpdateTotalPrice(){
